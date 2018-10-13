@@ -6,6 +6,7 @@ import { Router } from 'preact-router';
 // Code-splitting is automated for routes
 import Game from '../routes/game';
 import Score from '../routes/score';
+import CreateRoom from '../routes/createroom';
 import Home from './../routes/home';
 
 export default class App extends Component {
@@ -26,6 +27,7 @@ export default class App extends Component {
           <Home path="/" />
           <Game path="/game" />
           <Score path="/score" />
+          <CreateRoom path="/create" />
 				</Router>
 			</div>
 		);
