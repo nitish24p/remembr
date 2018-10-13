@@ -1,17 +1,14 @@
 import { h, Component } from 'preact';
 import style from './style';
-import image from './../../assets/logo.png';
 import FixedButton from './../../components/fixedbutton';
 import * as Constants from './../../constants';
 import { route } from 'preact-router';
-import io from 'socket.io-client';
 
 class CreateRoom extends Component {
   state = {
-    fetchingCode: true
+    isLoading: true,
+    roomId: null
   }
-
-  socket = io(Constants.BASE_URL);
 
   componentDidMount() {
     fetch(Constants.BASE_URL + Constants.URLS.CREATE_ROOM, {
@@ -19,35 +16,30 @@ class CreateRoom extends Component {
     })
       .then(res => res.json())
       .then((data) => {
+        this.setState(({ isLoading, roomId }) => ({
+          isLoading: !isLoading,
+          roomId: data.room_id
+        }));
         console.log(data);
-        this.socket.emit('room', data.room_id);
+       
       })
       .catch(console.error);
   }
-  startGame() {
-    route('/game');
+  startGame = () => {
+    const { roomId } = this.state;
+    localStorage.setItem("roomId", roomId);
+    route('/startgame');
   }
   render() {
+    const { isLoading, roomId } = this.state;
     return (
       <div class={style.home}>
         <div class={style.header}>
-          <h1>REMEMBR</h1>
-          <img src={image} alt="logo url" />
+          <h2>{isLoading ? 'LOADING' : roomId }</h2>
         </div>
 
-        <h3>Find matching pairs of numbers</h3>
-        <ul class={style.ul}>
-          <li><div class={`${style.square} ${style.blue}`} />
-            <span class={style.listText}>Peak Bonus: See all cards for a brief period of time</span>
-          </li>
-          <li><div class={`${style.square} ${style.orange}`} />
-            <span class={style.listText}>Even Match: Match all even number cards</span>
-          </li>
-          <li><div class={`${style.square} ${style.green}`} />
-            <span class={style.listText}>Odd Match: Match all odd number cards</span>
-          </li>
-        </ul>
-        <FixedButton label="START" onClick={this.startGame} />
+        <h3>Share this code</h3>
+        <FixedButton label="JOIN ROOM" onClick={this.startGame} />
       </div>
     );
   }

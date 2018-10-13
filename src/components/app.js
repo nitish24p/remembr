@@ -7,6 +7,8 @@ import { Router } from 'preact-router';
 import Game from '../routes/game';
 import Score from '../routes/score';
 import CreateRoom from '../routes/createroom';
+import Multiplayer from '../routes/multiplayer';
+import JoinRoom from './../routes/joinroom';
 import Home from './../routes/home';
 
 export default class App extends Component {
@@ -28,6 +30,8 @@ export default class App extends Component {
           <Game path="/game" />
           <Score path="/score" />
           <CreateRoom path="/create" />
+          <Multiplayer path="/startgame" />
+          <JoinRoom path="/join" />
 				</Router>
 			</div>
 		);

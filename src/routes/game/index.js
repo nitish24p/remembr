@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import style from './style';
 import { route } from 'preact-router';
+import io from 'socket.io-client';
 
 const Cell = (props) => {
   const { cell, disableClick }= props;
@@ -42,7 +43,7 @@ const Row = (props) => {
 };
 
 class Game extends Component {
-  level = 1
+  level = 3
   timerClock = null
   clickedCards = []
 
@@ -58,6 +59,10 @@ class Game extends Component {
       timer: 0,
       disableClick: false
     };
+
+    this.socket = io('http://localhost:5000', {
+      forceNew: true
+    });
   }
   
   componentDidMount() {
