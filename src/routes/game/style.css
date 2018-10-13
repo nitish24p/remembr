@@ -1,0 +1,200 @@
+.home {
+
+}
+.game {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+
+}
+
+.row {
+  /* font-size:16px */
+}
+
+.cell {
+  background: #fafafa;
+  border-radius: 3px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: inherit;
+  height: 6em;
+  margin: 0.5em;
+  outline: none;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  display:inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 6em;
+  transition: all 0.5s;
+  
+}
+
+.cell span {
+  opacity: 0;
+  font-size: 20px;
+}
+
+.cell.open {
+  transform: rotateY(0);
+  background: #02b3e4;
+  cursor: default;
+  animation-name: flipInY;
+  animation-fill-mode: forwards;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: 0.7s;
+}
+
+.cell.open span {
+  opacity: 1
+}
+
+.cell.match {
+  cursor: default;
+  background: #20f794;
+  /* font-size: 33px; */
+  animation-name: rubberBand;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-duration: .75s;
+  animation-fill-mode: forwards;
+}
+
+.cell.match span {
+  opacity: 1
+}
+
+/* animations */
+@keyframes flipInY {
+	from {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0;
+	}
+
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in;
+	}
+
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1;
+	}
+
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+	}
+
+	to {
+		transform: perspective(400px);
+	}
+}
+
+@keyframes rubberBand {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	30% {
+		transform: scale3d(1.25, 0.75, 1);
+	}
+
+	40% {
+		transform: scale3d(0.75, 1.25, 1);
+	}
+
+	50% {
+		transform: scale3d(1.15, 0.85, 1);
+	}
+
+	65% {
+		transform: scale3d(.95, 1.05, 1);
+	}
+
+	75% {
+		transform: scale3d(1.05, .95, 1);
+  }
+
+  80% {
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+  }
+
+	to {
+    transform: scale3d(1, 1, 1);
+    opacity: 0;
+	}
+}
+
+@keyframes hideCard {
+	from {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+
+
+.timer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 20px;
+  font-size: 29px;
+  color: #fafafa;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+}
+
+.buttonContainer .button {
+  padding: 20px 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  /* height: 40px; */
+  font-size: 22px;
+  margin: 5px 11px;
+  color: #fff;
+}
+
+.buttonContainer .button.bluebtn {
+  background: #00b2e6;
+}
+
+
+.buttonContainer .button.greenbtn {
+  background: #20f794;
+}
+
+
+.buttonContainer .button.orangebtn {
+  background: #f78d20;
+}
+
+.buttonContainer .button:disabled {
+  background: #a9a9a9;
+}
+
+.disableClick {
+  pointer-events: none;
+}

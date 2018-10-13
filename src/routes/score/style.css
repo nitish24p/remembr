@@ -1,0 +1,26 @@
+.score {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+}
+
+.score h1 {
+  color: #00b2e6
+}
+
+.score h2 {
+  color: #fafafa
+}
+
+.score span {
+  font-size: 90px
+}
+
+.score .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

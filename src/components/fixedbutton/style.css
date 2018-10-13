@@ -1,0 +1,18 @@
+.fixedBtn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  left: 0;
+  padding: 20px;
+  font-size: 20px;
+  background: #00b2e6;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 20px;
+}
+
+.fixedBtn:disabled {
+  background: #84d5ec;
+}
