@@ -2,11 +2,19 @@ import { h, Component } from 'preact';
 import style from './style';
 import image from './../../assets/logo.png';
 import FixedButton from './../../components/fixedbutton';
+import Button from './../../components/button';
+import ButtonGroup from './../../components/button/buttongroup';
 import { route } from 'preact-router';
 
 class Home extends Component {
-  startGame() {
+  startSoloGame() {
     route('/game');
+  }
+  startCreateGame() {
+    route('/create');
+  }
+  joinGame() {
+    route('/join');
   }
   render() {
     return (
@@ -15,20 +23,11 @@ class Home extends Component {
           <h1>REMEMBR</h1>
           <img src={image} alt="logo url" />
         </div>
-        
-        <h3>Find matching pairs of numbers</h3>
-        <ul class={style.ul}>
-          <li><div class={`${style.square} ${style.blue}`} />
-            <span class={style.listText}>Peak Bonus: See all cards for a brief period of time</span>
-          </li>
-          <li><div class={`${style.square} ${style.orange}`} />
-            <span class={style.listText}>Even Match: Match all even number cards</span>
-          </li>
-          <li><div class={`${style.square} ${style.green}`} />
-            <span class={style.listText}>Odd Match: Match all odd number cards</span>
-          </li>
-        </ul>
-        <FixedButton label="START" onClick={this.startGame} />
+        <ButtonGroup>
+          <Button label="CREATE GAME" primary onClick={this.startCreateGame} />
+          <Button label="JOIN GAME" secondary onClick={this.joinGame} />
+          <Button label="PLAY SOLO" tertiary onClick={this.startSoloGame} />
+        </ButtonGroup>
       </div>
     );
   }

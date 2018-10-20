@@ -14,15 +14,7 @@ class JoinRoom extends Component {
     this.state = {
       hasOpponentJoined: false
     };
-
-    this.setUpSocketListeners();
   }
-
-  setUpSocketListeners = () => {
-
-    //this.socket.on()
-  }
-
 
   joinGame = (event) => {
     event.preventDefault();
@@ -32,9 +24,26 @@ class JoinRoom extends Component {
       alert('Incorrect code format');
       return;
     }
-    localStorage.setItem('roomId', code);
-    route('/startgame');
-    
+
+    fetch(Constants.BASE_URL + Constants.URLS.JOIN, {
+      method: 'post',
+      body: JSON.stringify({
+        roomId: code
+      }),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status) {
+        localStorage.setItem('roomId', code);
+        route('/startgame');
+      }
+      else {
+        alert('incorrect code entered');
+      }
+    });
   }
   render() {
     return (
@@ -46,8 +55,6 @@ class JoinRoom extends Component {
           <div class={style.inputContainer}>
             <input type="number" autocomplete={false} required class={style.input} name="code" />
           </div>
-
-          <h3>Can give a list of useasrs here</h3>
           <FixedButton label="JOIN GAME" type="submit" />
         </form>
         

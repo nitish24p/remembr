@@ -10,7 +10,7 @@
     "dev": "preact watch",
     "lint": "eslint src",
     "test": "jest",
-    "deploy": "yarn run build && cp build/index.html build/200.html && surge ./build -d remembr.surge.sh"
+    "deploy": "yarn run build && cp build/index.html build/200.html && surge ./build -d https://remembr.surge.sh"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor",

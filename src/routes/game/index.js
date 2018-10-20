@@ -2,8 +2,9 @@ import { h, Component } from 'preact';
 import style from './style';
 import { route } from 'preact-router';
 import io from 'socket.io-client';
+import { getFontSize } from './../../utils';
 
-const Cell = (props) => {
+export const Cell = (props) => {
   const { cell, disableClick }= props;
   return (
     <button className={`${style.cell} ${cell.isOpen ? style.open : ''} 
@@ -19,7 +20,7 @@ const Cell = (props) => {
   );
 };
 
-const Row = (props) => {
+export const Row = (props) => {
   const { rowIndex, row, nextPlayer, openCard, disableClick } = props;
   const generateCells = row.map((rowItem, columnIndex) => {
     return (
@@ -43,7 +44,7 @@ const Row = (props) => {
 };
 
 class Game extends Component {
-  level = 3
+  level = 1
   timerClock = null
   clickedCards = []
 
@@ -59,10 +60,6 @@ class Game extends Component {
       timer: 0,
       disableClick: false
     };
-
-    this.socket = io('http://localhost:5000', {
-      forceNew: true
-    });
   }
   
   componentDidMount() {
@@ -154,22 +151,6 @@ class Game extends Component {
 
     });
     
-  }
-
-  getFontSize = (level) => {
-    const suffix = 'px';
-    let size;
-    if (level <=2) {
-      size = 12;
-    }
-    else if (level < 4) {
-      size = 8;
-    }
-    else {
-      size = 7;
-    }
-
-    return size + suffix;
   }
 
   checkIfCardsAreMatched = () => {
@@ -286,7 +267,7 @@ class Game extends Component {
     return (
       <div class={style.home}>
         <div class={style.timer}><span>{this.state.timer}</span></div>
-        <div className={style.game} style={{ fontSize: this.getFontSize(this.level) }}>
+        <div className={style.game} style={{ fontSize: getFontSize(this.level) }}>
           {this.renderGrid()}
         </div>
           
@@ -315,3 +296,4 @@ class Game extends Component {
 }
 
 export default Game;
+

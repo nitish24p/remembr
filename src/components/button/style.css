@@ -1,0 +1,42 @@
+.fixedBtn {
+  bottom: 0;
+  right: 0;
+  width: 90%;
+  left: 0;
+  padding: 20px;
+  font-size: 20px;
+
+  border: none;
+  outline: none;
+  color: white;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+.fixedBtn:disabled {
+  background: #84d5ec;
+}
+
+.fixedBtn.primary {
+  background: #00b2e6;
+}
+
+.fixedBtn.secondary {
+  background: #00f990;
+}
+
+.fixedBtn.tertiary {
+  background: #f78d20;;
+}
+
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.buttonGroup button {
+  margin: 10px 0px
+}
